@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "lib": [
+            "DOM"
+        ]
+    },
+    "include": [
+        "src"
+    ]
+}

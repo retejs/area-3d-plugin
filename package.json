@@ -1,0 +1,45 @@
+{
+  "name": "rete-area-3d-plugin",
+  "version": "2.0.0-beta.1",
+  "description": "",
+  "scripts": {
+    "build": "rete build -c rete.config.ts",
+    "lint": "rete lint"
+  },
+  "author": "Vitaliy Stoliarov",
+  "license": "MIT",
+  "keywords": [
+    "plugin",
+    "rete",
+    "Rete.js"
+  ],
+  "homepage": "https://retejs.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/retejs/area-3d-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/retejs/area-3d-plugin/issues"
+  },
+  "peerDependencies": {
+    "rete": "^2.0.0-beta.9",
+    "rete-area-plugin": "^2.0.0-beta.11",
+    "rete-render-utils": "^2.0.0-beta.11",
+    "three": "^0.152.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^5.0.0",
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@types/three": "^0.152.0",
+    "parse-svg-path": "^0.1.2",
+    "rete": "file:../rete/dist/rete-2.0.0-beta.9.tgz",
+    "rete-area-plugin": "file:../area-plugin/dist/rete-area-plugin-2.0.0-beta.11.tgz",
+    "rete-cli": "1.0.0-beta.29",
+    "rete-render-utils": "^2.0.0-beta.11",
+    "svg-path-contours": "^2.0.0",
+    "three": "^0.152.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.21.0"
+  }
+}
