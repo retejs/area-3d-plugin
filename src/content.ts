@@ -8,7 +8,13 @@ export class Content<Scope> {
   public objects = new WeakMap<HTMLElement, ObjectHTML>()
 
   constructor(private scene: HybridScene<Scope>, private scope: Scope, private reordered: (target: HTMLElement) => Promise<unknown>) {
-    this.holder = scene.renderer.css3d.domElement.firstElementChild as HTMLElement
+    const css3dContainer = scene.renderer.css3d.domElement.firstElementChild?.firstElementChild
+
+    if (!css3dContainer || !(css3dContainer instanceof HTMLElement)) {
+      throw new Error('cannot find container for css3d element')
+    }
+
+    this.holder = css3dContainer
   }
 
   public getPointerFrom(event: MouseEvent) {
@@ -21,6 +27,7 @@ export class Content<Scope> {
 
   add(element: HTMLElement, object = new ObjectHTML(element)) {
     this.objects.set(element, object)
+    this.holder.appendChild(element)
     this.scene.add(object, this.scope)
   }
 
