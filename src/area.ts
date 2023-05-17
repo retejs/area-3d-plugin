@@ -43,6 +43,10 @@ export class Area<Scope> {
     this.scene.resize(this.container.clientWidth, this.container.clientHeight)
   }
 
+  public getCanvas() {
+    return this.scene.canvases.get(this.scope)
+  }
+
   public setPointerFrom(event: MouseEvent) {
     const point = this.scene.getPointerFrom(event, this.scope)
 
