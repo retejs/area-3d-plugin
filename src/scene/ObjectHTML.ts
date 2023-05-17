@@ -46,13 +46,12 @@ export class ObjectHTML extends Object3D {
 
     const front = new Mesh()
 
-    front.castShadow = true
-    front.receiveShadow = true
     this.front = front
     this.add(front)
 
     const back = new Mesh()
 
+    back.castShadow = true
     this.back = back
     this.add(back)
 
