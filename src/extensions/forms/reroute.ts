@@ -1,7 +1,7 @@
 import { ConnectionId, Root, Scope, ScopeAsParameter } from 'rete'
 import { RenderSignal } from 'rete-area-plugin'
 import { CircleGeometry } from 'three'
-import { mergeBufferGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
+import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 
 import { Area3DPlugin } from '../..'
 import { ExpectSchemes, Position } from '../../types'
@@ -32,7 +32,7 @@ export function reroute<S extends ExpectSchemes, K>(scope: ScopeAsParameter<Scop
       })
 
       // eslint-disable-next-line no-undefined
-      area.area.content.updateGeometry(context.data.element, pins.length ? mergeBufferGeometries(pins) : undefined)
+      area.area.content.updateGeometry(context.data.element, pins.length ? mergeGeometries(pins) : undefined)
     }
     return context
   })
