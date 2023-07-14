@@ -4,8 +4,22 @@ import { Area3DPlugin } from '..'
 import { ExpectSchemes } from '../types'
 import { getBoundingBox } from './bounding-box'
 
-type Params = { scale?: number }
+/**
+ * Parameters for `zoomAt` extension
+ */
+export type Params = {
+  /** Set gap between nodes and the viewport border */
+  scale?: number
+}
 
+/**
+ * Move the camera to look at the given nodes
+ * @param area The 3D area plugin
+ * @param nodes The nodes to look at
+ * @param params The lookAt parameters
+ * @example Area3DExtensions.lookAt(area, [node1, node2])
+ * @example Area3DExtensions.lookAt(area, [node1, node2], { scale: 0.8 })
+ */
 export function lookAt<S extends ExpectSchemes, K>(area: Area3DPlugin<S, K>, nodes: S['Node'][], params?: Params) {
   const { scale = 0.9 } = params || {}
   const { scene } = area.area

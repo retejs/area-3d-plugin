@@ -9,6 +9,13 @@ import { OrbitControls } from './OrbitControls'
 
 export { DraggableObject3D }
 
+/**
+ * HybridScene is a wrapper for Three.js Scene with some additional features such as:
+ * - drag controls
+ * - orbit controls
+ * - camera
+ * - renderer
+ */
 export class HybridScene<Scope> {
   camera: PerspectiveCamera
   renderer: HybridRenderer
@@ -100,6 +107,9 @@ export class HybridScene<Scope> {
     this.renderer.setSize(width, height)
   }
 
+  /**
+   * Render the frame. Can be directly used instead of `animate` extension.
+   */
   public render() {
     this.renderer.render(this.root, this.camera)
   }

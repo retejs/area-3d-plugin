@@ -18,6 +18,9 @@ type Guards = {
   transform: (params: TransformEventParams) => Promise<unknown | boolean>
 }
 
+/**
+ * Area class is responsible for managing 3D scene for a current editor
+ */
 export class Area<Scope> {
   scene: HybridScene<Scope>
   pointer: Position = { x: 0, y: 0 }
@@ -43,10 +46,16 @@ export class Area<Scope> {
     this.scene.resize(this.container.clientWidth, this.container.clientHeight)
   }
 
+  /**
+   * Get the canvas in form of Object3D for the current scope
+   */
   public getCanvas() {
     return this.scene.canvases.get(this.scope)
   }
 
+  /**
+   * Set the pointer position from the given mouse event into the `pointer` property
+   */
   public setPointerFrom(event: MouseEvent) {
     const point = this.scene.getPointerFrom(event, this.scope)
 
@@ -73,6 +82,10 @@ export class Area<Scope> {
     this.events.pointerUp(this.pointer, event)
   }
 
+  /**
+   * Force resize the container of the 3D scene
+   * @param event The resize event
+   */
   public resize = (event: Event) => {
     this.events.resize(event)
     this.scene.resize(this.container.clientWidth, this.container.clientHeight)

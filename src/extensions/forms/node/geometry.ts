@@ -4,14 +4,29 @@ import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js
 import { Size } from '../../../types'
 import { getRoundedShape } from '../../../utils/shapes'
 
-type Params = {
+/**
+ * Classic node geometry parameters
+ */
+export type Params = {
+  /** Socket radius, default: 12.3 */
   socketRadius?: number
+  /** Socket margin, default: 11.5 */
   socketMargin?: number
+  /** Inputs offset relative to bottom, default: 15.5 */
   inputsOffset?: number
+  /** Outputs offset relative to top, default: 44.5 */
   outputsOffset?: number
+  /** Border radius, default: 10 */
   borderRadius?: number
 }
 
+/**
+ * Create classic node geometry
+ * @param size Node size
+ * @param params Geometry parameters
+ * @returns Node geometry
+ */
+// eslint-disable-next-line max-statements
 export function createClassicNodeGeometry(size: Size, params?: Params) {
   const {
     borderRadius = 10,
