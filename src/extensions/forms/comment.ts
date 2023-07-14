@@ -33,6 +33,10 @@ type Requires =
   | { type: 'commenttranslated', data: { id: Comment['id'], dx: number, dy: number, sources?: NodeId[] } }
   | { type: 'commentlinktranslate', data: { id: Comment['id'], link: string } }
 
+/**
+ * Form generator for embedding rete-comment-plugin into 3D scene.
+ * @param scope Area3DPlugin instance
+ */
 export function comment<S extends ExpectSchemes, K>(scope: ScopeAsParameter<Scope<K, any[]>, [Requires]>) {
   const commentScope = scope as unknown as Scope<Requires> & {
     comments: Map<string, Comment>

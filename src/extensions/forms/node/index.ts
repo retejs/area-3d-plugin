@@ -7,10 +7,19 @@ import { createClassicNodeGeometry } from './geometry'
 
 export { createClassicNodeGeometry }
 
-type Props<S extends ExpectSchemes> = {
+/**
+ * Options for node form generator
+ */
+export type Props<S extends ExpectSchemes> = {
+  /** Customize node geometry */
   customize?: (node: S['Node']) => BufferGeometry
 }
 
+/**
+ * Form generator for embedding nodes into 3D scene.
+ * @param area Area3DPlugin instance
+ * @param props Options for node form generator
+ */
 export function node<S extends ExpectSchemes, K>(area: Area3DPlugin<S, K>, props?: Props<S>) {
   const editor = area.parentScope<NodeEditor<S>>(NodeEditor)
 

@@ -19,6 +19,10 @@ export type PinData = {
 type Requires =
   | RenderSignal<'reroute-pins', { data: PinData }>
 
+/**
+ * Form generator for embedding rete-connection-reroute-plugin into 3D scene.
+ * @param scope Area3DPlugin instance
+ */
 export function reroute<S extends ExpectSchemes, K>(scope: ScopeAsParameter<Scope<K, [Root<S>]>, [Requires]>) {
   if (!(scope instanceof Area3DPlugin<S, Requires>)) throw new Error('')
   const area = scope as Area3DPlugin<S, Requires>

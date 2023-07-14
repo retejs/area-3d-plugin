@@ -1,8 +1,13 @@
 import { Camera, PCFSoftShadowMap, Scene, WebGLRenderer } from 'three'
 import { CSS3DRenderer } from 'three/examples/jsm/renderers/CSS3DRenderer.js'
 
+/**
+ * HybridRenderer is a wrapper for Three.js CSS3DRenderer and WebGLRenderer.
+ */
 export class HybridRenderer {
+  /** CSS3DRenderer instance created by default */
   css3d: CSS3DRenderer
+  /** WebGLRenderer instance created by default */
   webgl: WebGLRenderer
   domElement: HTMLElement
 

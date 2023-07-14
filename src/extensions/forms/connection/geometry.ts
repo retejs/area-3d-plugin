@@ -5,6 +5,13 @@ import parse from 'parse-svg-path'
 import contours from 'svg-path-contours'
 import { BufferGeometry, PlaneGeometry, Vector2 } from 'three'
 
+/**
+ * Create geometry for classic connection.
+ * Can be used in `customize` option.
+ * @param path SVG path
+ * @param width Connection width
+ * @returns Connection geometry
+ */
 // eslint-disable-next-line max-statements
 export function createClassicConnectionGeometry(path: string, width: number) {
   const segments = contours(parse(path)) as [number, number][][]

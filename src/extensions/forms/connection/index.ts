@@ -12,10 +12,19 @@ type Position = { x: number, y: number }
 type Requires<Schemes extends BaseSchemes> =
   | { type: 'connectionpath', data: { payload: Schemes['Connection'], path?: string, points: Position[] } }
 
-type Props = {
+/**
+ * Options for node form generator
+ */
+export type Props = {
+  /** Customize connection geometry */
   customize?: (path: string) => BufferGeometry
 }
 
+/**
+ * Form generator for embedding connections into 3D scene.
+ * @param scope Area3DPlugin instance
+ * @param props Options for connection form generator
+ */
 export function connection<S extends ExpectSchemes, K, E>(scope: ScopeAsParameter<Scope<K, E[]>, [Requires<S>]>, props?: Props) {
   const renderScope = scope as Scope<Requires<S>, E[]>
   const area = renderScope.parentScope<Area3DPlugin<S, Requires<S>>>(Area3DPlugin)
