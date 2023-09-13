@@ -1,3 +1,4 @@
+import { Object3D } from 'three'
 import { Content } from './content'
 import { HybridScene } from './scene'
 import { orbitControlsRestrictor } from './scene/OrbitControls'
@@ -49,7 +50,7 @@ export class Area<Scope> {
   /**
    * Get the canvas in form of Object3D for the current scope
    */
-  public getCanvas() {
+  public getCanvas(): Object3D | undefined {
     return this.scene.canvases.get(this.scope)
   }
 

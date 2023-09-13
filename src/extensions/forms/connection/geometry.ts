@@ -13,7 +13,7 @@ import { BufferGeometry, PlaneGeometry, Vector2 } from 'three'
  * @returns Connection geometry
  */
 // eslint-disable-next-line max-statements
-export function createClassicConnectionGeometry(path: string, width: number) {
+export function createClassicConnectionGeometry(path: string, width: number): BufferGeometry {
   const segments = contours(parse(path)) as [number, number][][]
   const points = segments.map(segment => segment.map(([x, y]) => ({ x, y }))).flat()
   const geometry: BufferGeometry = new PlaneGeometry(100, 10, points.length - 1, 1)
