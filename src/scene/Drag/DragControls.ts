@@ -6,6 +6,9 @@ import {
 import { findTop, ObjectHTML } from '../ObjectHTML'
 
 type DefaultObject3D = Object3D
+export type DragStartEvent = { type: 'dragstart', object: DefaultObject3D }
+export type DragEvent = { type: 'drag', object: DefaultObject3D, position: Vector3 }
+export type DragEndEvent = { type: 'dragend', object: DefaultObject3D }
 
 const raycaster = new Raycaster()
 
@@ -77,7 +80,9 @@ class DragControls extends EventDispatcher {
       if (raycaster.ray.intersectPlane(this.getPlane(this.selected), this.intersection)) {
         const newPosition = this.intersection.sub(this.offset).applyMatrix4(this.inverseMatrix)
 
-        this.dispatchEvent({ type: 'drag', object: this.selected, position: newPosition } as never)
+        const eventData: DragEvent = { type: 'drag', object: this.selected, position: newPosition }
+
+        this.dispatchEvent(eventData as never)
       }
     }
   }
@@ -121,7 +126,10 @@ class DragControls extends EventDispatcher {
 
       event.stopPropagation()
       this.domElement.style.cursor = 'move'
-      this.dispatchEvent({ type: 'dragstart', object: this.selected } as never)
+
+      const eventData: DragStartEvent = { type: 'dragstart', object: this.selected }
+
+      this.dispatchEvent(eventData as never)
     }
   }
 
@@ -129,7 +137,9 @@ class DragControls extends EventDispatcher {
     if (this.enabled === false) return
 
     if (this.selected) {
-      this.dispatchEvent({ type: 'dragend', object: this.selected } as never)
+      const eventData: DragEndEvent = { type: 'dragend', object: this.selected }
+
+      this.dispatchEvent(eventData as never)
 
       this.selected = null
     }
