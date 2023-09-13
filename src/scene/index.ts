@@ -9,6 +9,8 @@ import { OrbitControls } from './OrbitControls'
 
 export { DraggableObject3D }
 
+type DefaultObject3D = Object3D
+
 /**
  * HybridScene is a wrapper for Three.js Scene with some additional features such as:
  * - drag controls
@@ -20,7 +22,7 @@ export class HybridScene<Scope> {
   camera: PerspectiveCamera
   renderer: HybridRenderer
   root = new Scene()
-  canvases = new Map<Scope, Object3D>()
+  canvases = new Map<Scope, DefaultObject3D>()
   controls: DragControls
   orbit: OrbitControls
 

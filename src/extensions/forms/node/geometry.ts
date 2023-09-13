@@ -27,7 +27,7 @@ export type Params = {
  * @returns Node geometry
  */
 // eslint-disable-next-line max-statements
-export function createClassicNodeGeometry(size: Size, params?: Params) {
+export function createClassicNodeGeometry(size: Size, params?: Params): BufferGeometry {
   const {
     borderRadius = 10,
     inputsOffset = 15.5,

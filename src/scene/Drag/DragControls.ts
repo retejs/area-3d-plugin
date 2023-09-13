@@ -5,14 +5,16 @@ import {
 
 import { findTop, ObjectHTML } from '../ObjectHTML'
 
+type DefaultObject3D = Object3D
+
 const raycaster = new Raycaster()
 
-class DragControls extends EventDispatcher {
+class DragControls extends EventDispatcher<any> {
   enabled = true
   intersections: Intersection<ObjectHTML>[] = []
   selected: Object3D | null = null
   hovered: Object3D | null = null
-  objects = new Set<Object3D>()
+  objects = new Set<DefaultObject3D>()
 
   private pointer = new Vector2()
   private offset = new Vector3()
