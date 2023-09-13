@@ -1,3 +1,11 @@
+## [2.0.3](https://github.com/retejs/area-3d-plugin/compare/v2.0.2...v2.0.3) (2023-09-13)
+
+
+### Bug Fixes
+
+* event types ([67a8914](https://github.com/retejs/area-3d-plugin/commit/67a8914acf65006b3c81f812839d9f54d235ea63))
+* tree compatibility ([84779b5](https://github.com/retejs/area-3d-plugin/commit/84779b5c155b961d84a98f5200b134cb99f92799))
+
 ## [2.0.2](https://github.com/retejs/area-3d-plugin/compare/v2.0.1...v2.0.2) (2023-09-13)
 
 
