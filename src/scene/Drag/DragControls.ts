@@ -9,7 +9,8 @@ type DefaultObject3D = Object3D
 
 const raycaster = new Raycaster()
 
-class DragControls extends EventDispatcher<any> {
+// EventDispatcher should have default generic for three 152-156 compatibility
+class DragControls extends EventDispatcher {
   enabled = true
   intersections: Intersection<ObjectHTML>[] = []
   selected: Object3D | null = null
@@ -76,7 +77,7 @@ class DragControls extends EventDispatcher<any> {
       if (raycaster.ray.intersectPlane(this.getPlane(this.selected), this.intersection)) {
         const newPosition = this.intersection.sub(this.offset).applyMatrix4(this.inverseMatrix)
 
-        this.dispatchEvent({ type: 'drag', object: this.selected, position: newPosition })
+        this.dispatchEvent({ type: 'drag', object: this.selected, position: newPosition } as never)
       }
     }
   }
@@ -120,7 +121,7 @@ class DragControls extends EventDispatcher<any> {
 
       event.stopPropagation()
       this.domElement.style.cursor = 'move'
-      this.dispatchEvent({ type: 'dragstart', object: this.selected })
+      this.dispatchEvent({ type: 'dragstart', object: this.selected } as never)
     }
   }
 
@@ -128,7 +129,7 @@ class DragControls extends EventDispatcher<any> {
     if (this.enabled === false) return
 
     if (this.selected) {
-      this.dispatchEvent({ type: 'dragend', object: this.selected })
+      this.dispatchEvent({ type: 'dragend', object: this.selected } as never)
 
       this.selected = null
     }
