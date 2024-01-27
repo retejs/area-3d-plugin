@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/retejs/area-3d-plugin/compare/v2.0.3...v2.0.4) (2024-01-27)
+
+
+### Bug Fixes
+
+* **build:** source maps ([893d274](https://github.com/retejs/area-3d-plugin/commit/893d27493b857c867655a1475f6c0aefc2dc9dd5))
+
 ## [2.0.3](https://github.com/retejs/area-3d-plugin/compare/v2.0.2...v2.0.3) (2023-09-13)
 
 
