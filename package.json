@@ -32,10 +32,11 @@
     "@rollup/plugin-alias": "^5.0.0",
     "@rollup/plugin-commonjs": "^25.0.0",
     "@types/three": "^0.156.0",
+    "globals": "^15.9.0",
     "parse-svg-path": "^0.1.2",
     "rete": "^2.0.1",
     "rete-area-plugin": "^2.0.0",
-    "rete-cli": "^1.0.2",
+    "rete-cli": "~2.0.0",
     "rete-render-utils": "^2.0.0",
     "svg-path-contours": "^2.0.0",
     "three": "^0.156.1"

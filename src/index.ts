@@ -44,22 +44,27 @@ export class Area3DPlugin<Schemes extends ExpectSchemes, ExtraSignals = never> e
    * @param container HTML element to render area in
    */
   constructor(container: HTMLElement)
+  // eslint-disable-next-line @typescript-eslint/unified-signatures
   constructor(shared: Area3DPlugin<Schemes, ExtraSignals>)
   constructor(argument: HTMLElement | Area3DPlugin<Schemes, ExtraSignals>) {
     super('area-3d')
-    this.container = argument instanceof Area3DPlugin ? argument.container : argument
+    this.container = argument instanceof Area3DPlugin
+      ? argument.container
+      : argument
     this.container.style.overflow = 'hidden'
     this.container.addEventListener('contextmenu', this.onContextMenu)
 
     this.area = new Area(
       this.container,
-      argument instanceof Area3DPlugin ? argument.area.scene : null,
+      argument instanceof Area3DPlugin
+        ? argument.area.scene
+        : null,
       this,
       {
-        pointerDown: (position, event) => this.emit({ type: 'pointerdown', data: { position, event } }),
-        pointerMove: (position, event) => this.emit({ type: 'pointermove', data: { position, event } }),
-        pointerUp: (position, event) => this.emit({ type: 'pointerup', data: { position, event } }),
-        resize: event => this.emit({ type: 'resized', data: { event } }),
+        pointerDown: (position, event) => void this.emit({ type: 'pointerdown', data: { position, event } }),
+        pointerMove: (position, event) => void this.emit({ type: 'pointermove', data: { position, event } }),
+        pointerUp: (position, event) => void this.emit({ type: 'pointerup', data: { position, event } }),
+        resize: event => void this.emit({ type: 'resized', data: { event } }),
         transformed: params => this.emit({ type: 'transformed', data: params }),
         reordered: element => this.emit({ type: 'reordered', data: { element } })
       },
@@ -78,7 +83,7 @@ export class Area3DPlugin<Schemes extends ExpectSchemes, ExtraSignals = never> e
     return new Area3DPlugin<Schemes, ExtraSignals>(this)
   }
 
-  setParent(scope: Scope<Root<Schemes>, []>) {
+  setParent(scope: Scope<Root<Schemes>>) {
     super.setParent(scope)
 
     this.addPipe(context => {
@@ -106,17 +111,17 @@ export class Area3DPlugin<Schemes extends ExpectSchemes, ExtraSignals = never> e
   }
 
   private onContextMenu = (event: MouseEvent) => {
-    this.emit({ type: 'contextmenu', data: { event, context: 'root' } })
+    void this.emit({ type: 'contextmenu', data: { event, context: 'root' } })
   }
 
   public addNodeView(node: Schemes['Node']) {
     const { id } = node
     const view = new NodeView(
       {
-        picked: () => this.emit({ type: 'nodepicked', data: { id } }),
+        picked: () => void this.emit({ type: 'nodepicked', data: { id } }),
         translated: data => this.emit({ type: 'nodetranslated', data: { id, ...data } }),
-        dragged: () => this.emit({ type: 'nodedragged', data: node }),
-        contextmenu: event => this.emit({ type: 'contextmenu', data: { event, context: node } }),
+        dragged: () => void this.emit({ type: 'nodedragged', data: node }),
+        contextmenu: event => void this.emit({ type: 'contextmenu', data: { event, context: node } }),
         resized: ({ size }) => this.emit({ type: 'noderesized', data: { id: node.id, size } })
       },
       {
@@ -128,7 +133,7 @@ export class Area3DPlugin<Schemes extends ExpectSchemes, ExtraSignals = never> e
     this.nodeViews.set(id, view)
     this.area.content.add(view.element, view.object)
 
-    this.emit({
+    void this.emit({
       type: 'render',
       data: { element: view.element, type: 'node', payload: node }
     })
@@ -140,7 +145,7 @@ export class Area3DPlugin<Schemes extends ExpectSchemes, ExtraSignals = never> e
     const view = this.nodeViews.get(id)
 
     if (view) {
-      this.emit({ type: 'unmount', data: { element: view.element } })
+      void this.emit({ type: 'unmount', data: { element: view.element } })
       this.nodeViews.delete(id)
       this.area.content.remove(view.element)
     }
@@ -148,13 +153,13 @@ export class Area3DPlugin<Schemes extends ExpectSchemes, ExtraSignals = never> e
 
   public addConnectionView(connection: Schemes['Connection']) {
     const view = new ConnectionView({
-      contextmenu: event => this.emit({ type: 'contextmenu', data: { event, context: connection } })
+      contextmenu: event => void this.emit({ type: 'contextmenu', data: { event, context: connection } })
     })
 
     this.connectionViews.set(connection.id, view)
     this.area.content.add(view.element, view.object)
 
-    this.emit({
+    void this.emit({
       type: 'render',
       data: { element: view.element, type: 'connection', payload: connection }
     })
@@ -166,7 +171,7 @@ export class Area3DPlugin<Schemes extends ExpectSchemes, ExtraSignals = never> e
     const view = this.connectionViews.get(id)
 
     if (view) {
-      this.emit({ type: 'unmount', data: { element: view.element } })
+      void this.emit({ type: 'unmount', data: { element: view.element } })
       this.connectionViews.delete(id)
       this.area.content.remove(view.element)
     }
@@ -212,8 +217,12 @@ export class Area3DPlugin<Schemes extends ExpectSchemes, ExtraSignals = never> e
    */
   destroy() {
     this.container.removeEventListener('contextmenu', this.onContextMenu)
-    Array.from(this.connectionViews.keys()).forEach(id => this.removeConnectionView(id))
-    Array.from(this.nodeViews.keys()).forEach(id => this.removeNodeView(id))
+    Array.from(this.connectionViews.keys()).forEach(id => {
+      this.removeConnectionView(id)
+    })
+    Array.from(this.nodeViews.keys()).forEach(id => {
+      this.removeNodeView(id)
+    })
     this.area.destroy()
   }
 }

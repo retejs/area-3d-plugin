@@ -9,7 +9,9 @@ import { flipFaces } from '../utils/geometry'
 export function createMaterial(transparent: boolean) {
   return new ShadowMaterial({
     transparent: true,
-    opacity: transparent ? 0.5 : 0.7,
+    opacity: transparent
+      ? 0.5
+      : 0.7,
     blending: NoBlending,
     side: FrontSide
   })
@@ -63,13 +65,13 @@ export class ObjectHTML extends Object3D {
 
     if (scaled) flipFaces(scaled)
 
-    if (this.front) this.front.geometry = scaled || new BufferGeometry()
-    if (this.back) this.back.geometry = scaled || new BufferGeometry()
+    if (this.front) this.front.geometry = scaled ?? new BufferGeometry()
+    if (this.back) this.back.geometry = scaled ?? new BufferGeometry()
   }
 
   updateMaterials(materials?: ObjectHTMLMaterials) {
-    if (this.front) this.front.material = materials?.front || createMaterial(false)
-    if (this.back) this.back.material = materials?.back || createBackMaterial()
+    if (this.front) this.front.material = materials?.front ?? createMaterial(false)
+    if (this.back) this.back.material = materials?.back ?? createBackMaterial()
   }
 }
 

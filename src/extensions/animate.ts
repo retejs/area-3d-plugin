@@ -13,7 +13,9 @@ export function animate<S extends ExpectSchemes, K>(area: Area3DPlugin<S, K>, ti
     if (tick) tick(time)
 
     area.area.scene.render()
-    requestAnimationFrame((t) => render(t))
+    requestAnimationFrame(t => {
+      render(t)
+    })
   }
 
   render(performance.now())

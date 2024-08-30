@@ -26,7 +26,7 @@ export type Params = {
  * @param params Geometry parameters
  * @returns Node geometry
  */
-// eslint-disable-next-line max-statements
+// eslint-disable-next-line max-statements, complexity
 export function createClassicNodeGeometry(size: Size, params?: Params): BufferGeometry {
   const {
     borderRadius = 10,
@@ -34,7 +34,7 @@ export function createClassicNodeGeometry(size: Size, params?: Params): BufferGe
     outputsOffset = 44.5,
     socketRadius = 12.3,
     socketMargin = 11.5
-  } = params || {}
+  } = params ?? {}
   const fixWidth = size.width - 1 // hide border artifact
   const fixHeight = size.height - 1 // hide border artifact
   const shape = getRoundedShape(fixWidth, fixHeight, borderRadius * 1.05)
@@ -49,7 +49,7 @@ export function createClassicNodeGeometry(size: Size, params?: Params): BufferGe
     for (let index = 0; index < inputs; index++) {
       const geom = circle.clone()
       const x = 1.5
-      const y = size.height - socketRadius - inputsOffset - ((socketRadius * 2 + socketMargin) * index)
+      const y = size.height - socketRadius - inputsOffset - (socketRadius * 2 + socketMargin) * index
 
       geom.translate(x, y, 0)
 
@@ -62,7 +62,7 @@ export function createClassicNodeGeometry(size: Size, params?: Params): BufferGe
     for (let index = 0; index < outputs; index++) {
       const geom = circle.clone()
       const x = size.width - 1.5
-      const y = socketRadius + outputsOffset + ((socketRadius * 2 + socketMargin) * index)
+      const y = socketRadius + outputsOffset + (socketRadius * 2 + socketMargin) * index
 
       geom.translate(x, y, 0)
 

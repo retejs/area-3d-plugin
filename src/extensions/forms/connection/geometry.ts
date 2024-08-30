@@ -26,7 +26,8 @@ export function createClassicConnectionGeometry(path: string, width: number): Bu
       const prevPoint = new Vector2(points[i - 1].x, points[i - 1].y)
       const nextPoint = new Vector2(points[i + 1].x, points[i + 1].y)
       const vectorBetweenPoints = nextPoint.clone().sub(prevPoint)
-      const normalBetweenPoints = new Vector2(-vectorBetweenPoints.y, vectorBetweenPoints.x).clone().normalize()
+      const normalBetweenPoints = new Vector2(-vectorBetweenPoints.y, vectorBetweenPoints.x).clone()
+        .normalize()
 
       normal.set(normalBetweenPoints.x, normalBetweenPoints.y).multiplyScalar(width / 2)
     }

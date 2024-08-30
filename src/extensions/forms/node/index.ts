@@ -28,7 +28,9 @@ export function node<S extends ExpectSchemes, K>(area: Area3DPlugin<S, K>, props
     if (context.type === 'render' && context.data.type === 'node') {
       const id = context.data.payload.id
       const currentNode = editor.getNode(id)
-      const geometry = props?.customize ? props.customize(currentNode) : createClassicNodeGeometry(currentNode)
+      const geometry = props?.customize
+        ? props.customize(currentNode)
+        : createClassicNodeGeometry(currentNode)
 
       area.area.content.updateGeometry(context.data.element, geometry)
     }
