@@ -87,7 +87,7 @@ function commentGeometry(width: number, height: number, x: number, y: number) {
 
 function updateCommentGeometry(area: Area3DPlugin<ExpectSchemes, any>, c: Comment) {
   area.area.content.updateGeometry(c.element, existing => {
-    const meta = (existing as CommentGeometry)?.__commentGeometry
+    const meta = (existing as CommentGeometry).__commentGeometry
 
     if (meta) {
       if (meta.width !== c.width || meta.height !== c.height) {

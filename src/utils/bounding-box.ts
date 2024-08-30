@@ -3,8 +3,12 @@ import { Position, Size } from '../types'
 /**
  * Bounding box
  */
-const min = (arr: number[]) => arr.length === 0 ? 0 : Math.min(...arr)
-const max = (arr: number[]) => arr.length === 0 ? 0 : Math.max(...arr)
+const min = (arr: number[]) => arr.length === 0
+  ? 0
+  : Math.min(...arr)
+const max = (arr: number[]) => arr.length === 0
+  ? 0
+  : Math.max(...arr)
 
 export function getBoundingBox(rects: ({ position: Position } & Size)[]) {
   const left = min(rects.map(rect => rect.position.x))

@@ -1,4 +1,5 @@
 import { Object3D } from 'three'
+
 import { Content } from './content'
 import { HybridScene } from './scene'
 import { orbitControlsRestrictor } from './scene/OrbitControls'
@@ -16,7 +17,7 @@ type Events = {
   reordered: (element: HTMLElement) => Promise<unknown>
 }
 type Guards = {
-  transform: (params: TransformEventParams) => Promise<unknown | boolean>
+  transform: (params: TransformEventParams) => Promise<unknown>
 }
 
 /**

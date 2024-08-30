@@ -67,7 +67,7 @@ export class HybridScene<Scope> {
     const controls = new DragControls(
       this.camera,
       this.renderer.domElement,
-      (object) => {
+      object => {
         const canvas = object.parent
 
         if (!canvas) throw new Error('object doesnt have parent')
@@ -142,7 +142,7 @@ export class HybridScene<Scope> {
     const raycaster = new Raycaster()
     const pointer = new Vector2(
       (event.clientX - rect.left) / rect.width * 2 - 1,
-      - (event.clientY - rect.top) / rect.height * 2 + 1
+      -(event.clientY - rect.top) / rect.height * 2 + 1
     )
 
     raycaster.setFromCamera(pointer, this.camera)

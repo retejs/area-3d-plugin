@@ -39,7 +39,9 @@ export function connection<S extends ExpectSchemes, K, E>(scope: ScopeAsParamete
 
       if (view) {
         const path = context.data.path || classicConnectionPath(context.data.points as [Position, Position], 0.3)
-        const geometry = props?.customize ? props.customize(path) : createClassicConnectionGeometry(path, 4.6)
+        const geometry = props?.customize
+          ? props.customize(path)
+          : createClassicConnectionGeometry(path, 4.6)
 
         if (geometry) {
           area.area.content.updateGeometry(view.element, geometry)

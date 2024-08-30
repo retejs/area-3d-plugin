@@ -1,4 +1,4 @@
-import { DragControls, DragStartEvent, DragEvent, DragEndEvent } from './DragControls'
+import { DragControls, DragEndEvent, DragEvent, DragStartEvent } from './DragControls'
 import { DraggableObject3D } from './DraggableObject3D'
 
 export { DragControls, DraggableObject3D }

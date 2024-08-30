@@ -70,7 +70,7 @@ class DragControls extends EventDispatcher {
   }
 
   onPointerMove = (event: PointerEvent) => {
-    if (this.enabled === false) return
+    if (!this.enabled) return
 
     this.updatePointer(event)
 
@@ -104,7 +104,7 @@ class DragControls extends EventDispatcher {
   }
 
   onPointerDown = (event: MouseEvent) => {
-    if (this.enabled === false) return
+    if (!this.enabled) return
 
     this.updatePointer(event)
 
@@ -134,7 +134,7 @@ class DragControls extends EventDispatcher {
   }
 
   onPointerCancel = () => {
-    if (this.enabled === false) return
+    if (!this.enabled) return
 
     if (this.selected) {
       const eventData: DragEndEvent = { type: 'dragend', object: this.selected }
@@ -144,14 +144,16 @@ class DragControls extends EventDispatcher {
       this.selected = null
     }
 
-    this.domElement.style.cursor = this.hovered ? 'pointer' : 'auto'
+    this.domElement.style.cursor = this.hovered
+      ? 'pointer'
+      : 'auto'
   }
 
   updatePointer = (event: MouseEvent) => {
     const rect = this.domElement.getBoundingClientRect()
 
     this.pointer.x = (event.clientX - rect.left) / rect.width * 2 - 1
-    this.pointer.y = - (event.clientY - rect.top) / rect.height * 2 + 1
+    this.pointer.y = -(event.clientY - rect.top) / rect.height * 2 + 1
   }
 }
 

@@ -24,7 +24,7 @@ type Requires =
  * @param scope Area3DPlugin instance
  */
 export function reroute<S extends ExpectSchemes, K>(scope: ScopeAsParameter<Scope<K, [Root<S>]>, [Requires]>) {
-  if (!(scope instanceof Area3DPlugin<S, Requires>)) throw new Error('')
+  if (!(scope instanceof Area3DPlugin)) throw new Error('')
   const area = scope as Area3DPlugin<S, Requires>
 
   area.addPipe(context => {
@@ -35,8 +35,9 @@ export function reroute<S extends ExpectSchemes, K>(scope: ScopeAsParameter<Scop
         return pinGeometry.clone().translate(pin.position.x, pin.position.y, 0)
       })
 
-      // eslint-disable-next-line no-undefined
-      area.area.content.updateGeometry(context.data.element, pins.length ? mergeGeometries(pins) : undefined)
+      area.area.content.updateGeometry(context.data.element, pins.length
+        ? mergeGeometries(pins)
+        : undefined)
     }
     return context
   })

@@ -6,14 +6,14 @@ export { OrbitControls }
 
 export type Transform = { position: Vector3, rotation: Euler }
 
-type Check = (current: Transform, previous: Transform | undefined) => Promise<boolean | unknown>
-type Updated = (current: Transform, previous: Transform | undefined) => Promise<boolean | unknown>
+type Check = (current: Transform, previous: Transform | undefined) => Promise<unknown>
+type Updated = (current: Transform, previous: Transform | undefined) => Promise<unknown>
 
 export function orbitControlsRestrictor(orbit: OrbitControls, camera: Camera, check: Check, updated: Updated) {
   let previous: Transform | undefined
   let previousTarget: Vector3
 
-  // eslint-disable-next-line max-statements
+  // eslint-disable-next-line max-statements, @typescript-eslint/no-misused-promises
   orbit.addEventListener('change', async () => {
     const position = camera.position.clone()
     const rotation = camera.rotation.clone()

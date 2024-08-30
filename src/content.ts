@@ -44,7 +44,7 @@ export class Content<Scope> {
    * @param next HTML element to insert before
    * @throws if `target` or `next` are not in the scene
    */
-  // eslint-disable-next-line no-undef
+
   async reorder(target: HTMLElement, next: ChildNode | null) {
     if (!this.holder.contains(target)) {
       throw new Error(`content doesn't have 'target' for reordering`)
@@ -77,7 +77,9 @@ export class Content<Scope> {
     const object = this.objects.get(element)
 
     if (object) {
-      object.updateGeometry(typeof geometry === 'function' ? geometry(object.front.geometry) : geometry)
+      object.updateGeometry(typeof geometry === 'function'
+        ? geometry(object.front.geometry)
+        : geometry)
     }
   }
 
