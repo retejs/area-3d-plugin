@@ -1,3 +1,10 @@
+## [2.0.5](https://github.com/retejs/area-3d-plugin/compare/v2.0.4...v2.0.5) (2024-08-30)
+
+
+### Bug Fixes
+
+* update cli and fix linting errors ([812b893](https://github.com/retejs/area-3d-plugin/commit/812b893bf9061a0f830b3a9872375246d8e50adb))
+
 ## [2.0.4](https://github.com/retejs/area-3d-plugin/compare/v2.0.3...v2.0.4) (2024-01-27)
 
 
